@@ -16,47 +16,47 @@ type Message struct {
 		Used to mention a specific message you are replying to.
 		The reply can be any message type currently supported by the Cloud API.
 	*/
-	Context map[string]string `json:"contextomitempty"`
+	Context map[string]string `json:"context,omitempty"`
 
 	// Optional. Default: "text"
 	Type MessageType `json:"type,omitempty"`
 
 	// Required for text messages.
-	Text Text `json:"text,omitempty"`
+	Text *Text `json:"text,omitempty"`
 
 	// Required when type is set to audio.
-	Audio Media `json:"audio,omitempty"`
+	Audio *Media `json:"audio,omitempty"`
 
 	// Required when type is set to contacts.
-	Contact Contacts `json:"contact,omitempty"`
+	Contact *Contacts `json:"contact,omitempty"`
 
 	// Required when type is set to document.
-	Document Media `json:"document,omitempty"`
+	Document *Media `json:"document,omitempty"`
 
 	// Required when type is set to image.
-	Image Media `json:"image,omitempty"`
+	Image *Media `json:"image,omitempty"`
 
 	/*
 		Required when type is set to interactive.
 		An interactive object. This option is used to send List Messages and Reply Buttons.
 		The components of each interactive object generally follow a consistent pattern: header, body, footer, and action.
 	*/
-	Interactive Interactive `json:"interactive,omitempty"`
+	Interactive *Interactive `json:"interactive,omitempty"`
 
 	// Required when type type is set to location.
-	Location Location `json:"location,omitempty"`
+	Location *Location `json:"location,omitempty"`
 
 	// Required when type type is set to reaction.
-	Reaction Reaction `json:"reaction,omitempty"`
+	Reaction *Reaction `json:"reaction,omitempty"`
 
 	// Required when type is set to sticker.
-	Sticker Media `json:"sticker,omitempty"`
+	Sticker *Media `json:"sticker,omitempty"`
 
 	// Required when type is set to video.
-	Video Media `json:"video,omitempty"`
+	Video *Media `json:"video,omitempty"`
 
 	// Required when type is set to template.
-	Template Template `json:"template,omitempty"`
+	Template *Template `json:"template,omitempty"`
 }
 
 // MessageType field

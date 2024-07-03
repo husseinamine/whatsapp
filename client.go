@@ -1,24 +1,26 @@
-package client
+package whatsapp
 
 import (
+	"bytes"
 	"encoding/json"
 	"fmt"
 	"io"
 	"net/http"
 	"net/url"
-	"strings"
 	"time"
+
+	"github.com/husseinamine/whatsapp/types"
 )
 
 type Client struct {
-	WaHTTP       *http.Client
-	DefaultPhone string
-	Token        string
+	WaHTTP     *http.Client
+	BusinessID string
+	Token      string
 }
 
-func (c *Client) SendRequest(body string) (interface{}, error) {
+func (c *Client) SendMessage(message *types.Message) (interface{}, error) {
 	uri, err := url.ParseRequestURI(
-		fmt.Sprintf("%s/%s/messages", APIUrl, c.DefaultPhone),
+		fmt.Sprintf("%s/%s/messages", APIUrl, c.BusinessID),
 	)
 
 	if err != nil {
@@ -31,7 +33,8 @@ func (c *Client) SendRequest(body string) (interface{}, error) {
 	header.Add("Authorization", "Bearer "+c.Token)
 
 	// Write body
-	bodyReader := strings.NewReader(body)
+	body, _ := json.Marshal(message)
+	bodyReader := bytes.NewReader(body)
 	bodyCloser := io.NopCloser(bodyReader)
 
 	// Do request
@@ -55,14 +58,14 @@ func (c *Client) SendRequest(body string) (interface{}, error) {
 	return resBody, nil
 }
 
-func NewClient(defaultPhone string, token string) *Client {
+func NewClient(businessID string, token string) *Client {
 	httpClient := &http.Client{
 		Timeout: time.Second * 10,
 	}
 
 	return &Client{
-		WaHTTP:       httpClient,
-		DefaultPhone: defaultPhone,
-		Token:        token,
+		WaHTTP:     httpClient,
+		BusinessID: businessID,
+		Token:      token,
 	}
 }

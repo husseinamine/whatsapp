@@ -6,7 +6,7 @@ type Template struct {
 	Name string `json:"name"`
 
 	// Required.
-	Language Language `json:"language"`
+	Language *Language `json:"language"`
 
 	// Optional.
 	Components []*Component `json:"components,omitempty"`

@@ -1,6 +1,6 @@
 package types
 
-// Parameter represents a parameter object with different types.
+// Parameter object.
 type Parameter struct {
 	// Required.
 	Type ParameterType `json:"type"`
@@ -14,17 +14,17 @@ type Parameter struct {
 	Text string `json:"text,omitempty"`
 
 	// Required when Type is "currency".
-	Currency Currency `json:"currency,omitempty"`
+	Currency *Currency `json:"currency,omitempty"`
 
 	// Required when Type is "date_time".
-	DateTime DateTime `json:"date_time,omitempty"`
+	DateTime *DateTime `json:"date_time,omitempty"`
 
 	// Required when Type is "image".
-	Image Media `json:"image,omitempty"`
+	Image *Media `json:"image,omitempty"`
 
 	// Required when Type is "document".
 	// Only PDF documents are supported for media-based message templates.
-	Document Media `json:"document,omitempty"`
+	Document *Media `json:"document,omitempty"`
 }
 
 type ParameterType string
