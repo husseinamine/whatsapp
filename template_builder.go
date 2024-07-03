@@ -41,7 +41,7 @@ func (mb *TemplateBuilder) WithBodyParamater(parameter *types.Parameter) *Templa
 	return mb
 }
 
-func (mb *TemplateBuilder) WithButton() *TemplateBuilder {
+func (mb *TemplateBuilder) WithButton(subtype types.ComponentSubType) *TemplateBuilder {
 	index := len(mb.Buttons)
 
 	if index >= 3 {
@@ -49,8 +49,9 @@ func (mb *TemplateBuilder) WithButton() *TemplateBuilder {
 	}
 
 	mb.Buttons = append(mb.Buttons, &types.Component{
-		Type:  types.ButtonComponent,
-		Index: strconv.Itoa(index),
+		Type:    types.ButtonComponent,
+		SubType: subtype,
+		Index:   strconv.Itoa(index),
 	})
 
 	return mb
