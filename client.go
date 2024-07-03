@@ -18,7 +18,7 @@ type Client struct {
 	Token      string
 }
 
-func (c *Client) SendMessage(message *types.Message) (interface{}, error) {
+func (c *Client) SendMessage(message *types.Message) (map[string]interface{}, error) {
 	uri, err := url.ParseRequestURI(
 		fmt.Sprintf("%s/%s/messages", APIUrl, c.BusinessID),
 	)
