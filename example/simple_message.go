@@ -19,8 +19,8 @@ func main() {
 
 	message.Save()
 
-	S, E := client.SendMessage(message.Message)
+	res, err := client.SendMessage(message.Message)
 
-	fmt.Println(S)
-	fmt.Println(E)
+	fmt.Println(res)
+	fmt.Println(err)
 }
