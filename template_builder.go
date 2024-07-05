@@ -42,9 +42,9 @@ func (mb *TemplateBuilder) WithBodyParamater(parameter *types.Parameter) *Templa
 }
 
 func (mb *TemplateBuilder) WithButton(subtype types.ComponentSubType) *TemplateBuilder {
-	index := len(mb.Buttons) - 1
+	buttonCount := len(mb.Buttons)
 
-	if index >= 2 {
+	if index >= 3 {
 		panic("MORE THAN 3 BUTTONS ADDED TO TEMPLATE")
 	}
 
@@ -58,7 +58,7 @@ func (mb *TemplateBuilder) WithButton(subtype types.ComponentSubType) *TemplateB
 }
 
 func (mb *TemplateBuilder) WithButtonParameter(parameter *types.ButtonParameter) *TemplateBuilder {
-	index := len(mb.Buttons)
+	index := len(mb.Buttons) - 1
 
 	mb.Buttons[index].Parameters = append(mb.Buttons[index].Parameters, parameter)
 
