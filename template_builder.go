@@ -44,14 +44,14 @@ func (mb *TemplateBuilder) WithBodyParamater(parameter *types.Parameter) *Templa
 func (mb *TemplateBuilder) WithButton(subtype types.ComponentSubType) *TemplateBuilder {
 	buttonCount := len(mb.Buttons)
 
-	if index >= 3 {
+	if buttonCount >= 3 {
 		panic("MORE THAN 3 BUTTONS ADDED TO TEMPLATE")
 	}
 
 	mb.Buttons = append(mb.Buttons, &types.Component{
 		Type:    types.ButtonComponent,
 		SubType: subtype,
-		Index:   strconv.Itoa(index),
+		Index:   strconv.Itoa(buttonCount),
 	})
 
 	return mb
